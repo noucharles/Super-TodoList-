@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title%} Liste des Taches{% endblock %}
+
+{% block body %}
+ {% if taches %}
+    <table id="taches" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Descriptions</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tache in taches %}
+          <tr>
+            <td>{{ tache.nom }}</td>
+            <td>{{ tache.description }}</td>
+            <td>{{ tache.horaire|date('d-m-Y H:i:s') }}</td>
+           <td>
+              <a href="/tache/{{ tache.id }}" class="btn btn-dark">Détails</a>
+              <a href="/tache/edit/{{ tache.id }}" class="btn btn-dark">Modifier</a>
+              <a href="/tache/delete/{{ tache.id }}" class="btn btn-danger" 
+              onclick="return confirm('Etes-vous sûr de supprimer cette tache?');">Supprimer</a>
+              <a href="/tache/carriedOut/{{ tache.id }}" class="btn btn-success" 
+              onclick="return confirm('Etes-vous sûr que cette tache a été effectué?');">Effectué ?</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Aucune taches</p>
+  {% endif %} 
+{% endblock %}
