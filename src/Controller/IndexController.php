@@ -151,7 +151,7 @@ class IndexController extends AbstractController
     //récupérer tous les taches de la table tache de la BD
     // et les mettre dans le tableau $taches
     $taches= $this->getDoctrine()->getRepository(Tache::class)->findBy(
-      ['isFinished' => 0]
+      ['isFinished' => 1]
   );
     return  $this->render('taches/isFinished.html.twig',['taches' => $taches]);  
   }
